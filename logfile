@@ -1,0 +1,20 @@
+2024-11-11 07:51:32.127 HKT [32613] LOG:  starting PostgreSQL 14.13 (Homebrew) on aarch64-apple-darwin23.6.0, compiled by Apple clang version 16.0.0 (clang-1600.0.26.4), 64-bit
+2024-11-11 07:51:32.128 HKT [32613] LOG:  could not bind IPv6 address "::1": Address already in use
+2024-11-11 07:51:32.128 HKT [32613] HINT:  Is another postmaster already running on port 5432? If not, wait a few seconds and retry.
+2024-11-11 07:51:32.128 HKT [32613] LOG:  could not bind IPv4 address "127.0.0.1": Address already in use
+2024-11-11 07:51:32.128 HKT [32613] HINT:  Is another postmaster already running on port 5432? If not, wait a few seconds and retry.
+2024-11-11 07:51:32.128 HKT [32613] WARNING:  could not create listen socket for "localhost"
+2024-11-11 07:51:32.128 HKT [32613] FATAL:  could not create any TCP/IP sockets
+2024-11-11 07:51:32.129 HKT [32613] LOG:  database system is shut down
+2024-11-11 07:52:27.557 HKT [33468] FATAL:  lock file "postmaster.pid" already exists
+2024-11-11 07:52:27.557 HKT [33468] HINT:  Is another postmaster (PID 32655) running in data directory "/opt/homebrew/var/postgresql@14"?
+2024-11-11 07:53:27.832 HKT [33817] FATAL:  lock file "postmaster.pid" already exists
+2024-11-11 07:53:27.832 HKT [33817] HINT:  Is another postmaster (PID 32655) running in data directory "/opt/homebrew/var/postgresql@14"?
+2024-11-11 07:54:43.629 HKT [34688] LOG:  starting PostgreSQL 14.13 (Homebrew) on aarch64-apple-darwin23.6.0, compiled by Apple clang version 16.0.0 (clang-1600.0.26.4), 64-bit
+2024-11-11 07:54:43.631 HKT [34688] LOG:  listening on IPv6 address "::1", port 5432
+2024-11-11 07:54:43.631 HKT [34688] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-11-11 07:54:43.631 HKT [34688] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2024-11-11 07:54:43.633 HKT [34689] LOG:  database system was shut down at 2024-11-11 07:54:19 HKT
+2024-11-11 07:54:43.635 HKT [34688] LOG:  database system is ready to accept connections
+2024-11-11 07:54:56.390 HKT [34745] FATAL:  role "postgres" does not exist
+2024-11-11 07:55:34.754 HKT [34934] FATAL:  database "database" does not exist
