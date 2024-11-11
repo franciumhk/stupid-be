@@ -13,6 +13,7 @@ DB_HOST = os.getenv('DB_HOST', 'localhost')
 DB_PORT = os.getenv('DB_PORT', '5432')
 DB_NAME = os.getenv('DB_NAME', 'your_db_name')
 DB_USER = os.getenv('DB_USER', 'postgres')
+DB_URL = os.getenv('POSTGRES_URL_NO_SSL', 'postgres')
 DB_PASSWORD = os.getenv('DB_PASSWORD', '')
 
 # Configure database URL based on type
@@ -27,6 +28,9 @@ if DB_TYPE == 'sqlite':
         SQLALCHEMY_DATABASE_URL, 
         connect_args={"check_same_thread": False}
     )
+elif DB_TYPE == 'vercelpostgresql':
+    SQLALCHEMY_DATABASE_URL = f"{DB_URL}"
+    engine = create_engine(SQLALCHEMY_DATABASE_URL)
 elif DB_TYPE == 'postgresql':
     SQLALCHEMY_DATABASE_URL = f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
     engine = create_engine(SQLALCHEMY_DATABASE_URL)
