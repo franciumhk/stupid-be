@@ -25,13 +25,26 @@ logger = logging.getLogger(__name__)
 
 app = FastAPI()
 
-# Configure CORS
+origins = [
+    "http://localhost:3000",
+    "http://localhost",
+    f"{os.getenv('VERCEL_URL')}"  # Vercel deployment URL
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=origins,
     allow_credentials=True,
-    allow_methods=["*"],  # Allows all methods
-    allow_headers=["*"],  # Allows all headers
+    allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],
+    allow_headers=[
+        "Content-Type",
+        "Authorization",
+        "Accept",
+        "Origin",
+        "X-Requested-With",
+    ],
+    expose_headers=["*"],
+    max_age=600,
 )
 
 class ConnectionManager:
