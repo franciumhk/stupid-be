@@ -4,3 +4,5 @@ __pycache__
 node_modules
 venv/*
 *.db
+.next/
+next-env.d.ts
