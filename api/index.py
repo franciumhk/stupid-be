@@ -352,6 +352,6 @@ def read_business_info(ref_id: str, db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail="Listing not found")
     return schemas.BusinessInfoView(**db_listing.to_dict())
 
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+# if __name__ == "__main__":
+#     import uvicorn
+#     uvicorn.run(app, host="0.0.0.0", port=8000)
