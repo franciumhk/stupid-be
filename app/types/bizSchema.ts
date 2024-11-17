@@ -1,0 +1,56 @@
+
+// Define the BusinessListing interface based on your Pydantic model
+export interface BizSchema {
+  id: number;
+  ref_id: string;
+  creation_datetime: string;
+  title: string;
+  business_name: string;
+  availability: string;
+  business_type: string;
+  industry: string[];
+  label: string[];
+  foundation_date: string;
+  number_of_partners: number;
+  location: string;
+  address: string;
+  business_situs: string;
+  business_situs_owner_type: string;
+  size: number;
+  price: number;
+  min_price: number;
+  price_include_inventory: boolean;
+  deposit: number;
+  first_installment: number;
+  profit: number;
+  turnover: number;
+  rent: number;
+  renewal_rent: number;
+  merchandise_cost: number;
+  electricity_bill: number;
+  water_bill: number;
+  management_fee: number;
+  air_conditioning_fee: number;
+  rates_and_government_rent: number;
+  renovation_and_equipment: number;
+  other_expense: number;
+  number_of_staff: number;
+  staff_salary: number;
+  staff_remain: string;
+  mpf: number;
+  main_product_service: string[];
+  main_product_service_percentage: number[];
+  business_hours: string;
+  license: string[];
+  lease_term: number;
+  lease_expiry_date: string;
+  transfer_method: string[];
+  reason: string[];
+  involvement: string[];
+  agent: string;
+  client_name: string;
+  mobile: string;
+  email: string;
+  meeting_location: string;
+  description: string[];
+}

@@ -150,7 +150,7 @@ async def admin_websocket_endpoint(websocket: WebSocket, db: Session = Depends(g
         manager.disconnect_admin(websocket)
         print("Admin disconnected")
 
-@app.get("/api/conversations/{user_email}")
+@app.get("/api/py/conversations/{user_email}")
 async def get_conversations(user_email: str, db: Session = Depends(get_db)):
     conversations = get_recent_conversations(db, user_email)
     return [
@@ -161,7 +161,7 @@ async def get_conversations(user_email: str, db: Session = Depends(get_db)):
         } for conv in conversations
     ]
 
-@app.get("/api/latest-chats")
+@app.get("/api/py/latest-chats")
 async def get_latest_chats(limit: int = 10, db: Session = Depends(get_db)):
     # Query to get the latest chats
     latest_chats = db.query(models.Conversation.user_email)\
@@ -192,7 +192,7 @@ async def get_latest_chats(limit: int = 10, db: Session = Depends(get_db)):
 
     return result
 
-@app.get("/api/businesses/search", response_model=List[schemas.BusinessItemView])
+@app.get("/api/py/businesses/search", response_model=List[schemas.BusinessItemView])
 def search_businesses(
     db: Session = Depends(get_db),
     keyword: Optional[str] = Query(None),
@@ -256,7 +256,7 @@ async def validation_exception_handler(request: Request, exc: RequestValidationE
         content={"detail": exc.errors()},
     )
 
-@app.post("/api/businesses", response_model=schemas.BusinessListing)
+@app.post("/api/py/businesses", response_model=schemas.BusinessListing)
 async def create_listing(request: Request, listing: schemas.BusinessListingCreate, db: Session = Depends(get_db)):
     try:
         body = await request.body()
@@ -286,7 +286,7 @@ async def create_listing(request: Request, listing: schemas.BusinessListingCreat
         raise HTTPException(status_code=500, detail="Internal server error")
 
 
-@app.get("/api/businesses_items", response_model=List[schemas.BusinessItemView])
+@app.get("/api/py/businesses_items", response_model=List[schemas.BusinessItemView])
 def read_business_items(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
     # Select the columns we need
     stmt = select(
@@ -322,7 +322,7 @@ def read_business_items(skip: int = 0, limit: int = 100, db: Session = Depends(g
 
     return business_items
 
-@app.get("/api/businesses", response_model=List[schemas.BusinessListing])
+@app.get("/api/py/businesses", response_model=List[schemas.BusinessListing])
 def read_listings(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
     listings = db.query(models.BusinessListing).offset(skip).limit(limit).all()
     logger.error(listings)
@@ -331,14 +331,14 @@ def read_listings(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)
         businesses.append(schemas.BusinessListing(**item.to_dict()))
     return businesses
 
-@app.get("/api/businesses/{ref_id}", response_model=schemas.BusinessListing)
+@app.get("/api/py/businesses/{ref_id}", response_model=schemas.BusinessListing)
 def read_listing(ref_id: str, db: Session = Depends(get_db)):
     db_listing = db.query(models.BusinessListing).filter(models.BusinessListing.ref_id == ref_id).first()
     if db_listing is None:
         raise HTTPException(status_code=404, detail="Listing not found")
     return schemas.BusinessListing(**db_listing.to_dict())
 
-@app.put("/api/businesses/{ref_id}", response_model=schemas.BusinessListing)
+@app.put("/api/py/businesses/{ref_id}", response_model=schemas.BusinessListing)
 def update_listing(ref_id: str, listing: schemas.BusinessListingUpdate, db: Session = Depends(get_db)):
     db_listing = db.query(models.BusinessListing).filter(models.BusinessListing.ref_id == ref_id).first()
     if db_listing is None:
@@ -351,7 +351,7 @@ def update_listing(ref_id: str, listing: schemas.BusinessListingUpdate, db: Sess
     db.refresh(db_listing)
     return schemas.BusinessListing(**db_listing.to_dict())
 
-@app.delete("/api/businesses/{ref_id}", response_model=schemas.BusinessListing)
+@app.delete("/api/py/businesses/{ref_id}", response_model=schemas.BusinessListing)
 def delete_listing(ref_id: str, db: Session = Depends(get_db)):
     db_listing = db.query(models.BusinessListing).filter(models.BusinessListing.ref_id == ref_id).first()
     if db_listing is None:
@@ -360,7 +360,7 @@ def delete_listing(ref_id: str, db: Session = Depends(get_db)):
     db.commit()
     return schemas.BusinessListing(**db_listing.to_dict())
 
-@app.get("/api/businesses_info/{ref_id}", response_model=schemas.BusinessInfoView)
+@app.get("/api/py/businesses_info/{ref_id}", response_model=schemas.BusinessInfoView)
 def read_business_info(ref_id: str, db: Session = Depends(get_db)):
     db_listing = db.query(models.BusinessListing).filter(models.BusinessListing.ref_id == ref_id).first()
     if db_listing is None:
@@ -368,7 +368,7 @@ def read_business_info(ref_id: str, db: Session = Depends(get_db)):
     return schemas.BusinessInfoView(**db_listing.to_dict())
 
 
-@app.get("/api/test")
+@app.get("/api/py/test")
 def hello_test():
     return {"message": "Test"}
 

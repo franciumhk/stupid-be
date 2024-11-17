@@ -1,0 +1,25 @@
+.orangeThumb {
+  height: 20px;
+  width: 20px;
+  background-color: #ff8c00;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.rangeTrack {
+  height: 6px;
+  width: 100%;
+  background-color: #e9ecef;
+  border-radius: 3px;
+}
+
+.searchButton {
+  background-color: #ff8c00;
+  border-color: #ff8c00;
+}
+
+.resetButton {
+  color: #ff8c00;
+  border-color: #ff8c00;
+}
