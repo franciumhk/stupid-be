@@ -1,7 +1,7 @@
 import json
 from sqlalchemy import Column, Integer, String, Float, Boolean, Date, DateTime
 from sqlalchemy.dialects.sqlite import JSON
-from database import Base
+from api.database import Base
 from datetime import date, datetime, timezone
 
 class Conversation(Base):

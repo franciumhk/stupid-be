@@ -1,7 +1,7 @@
 import json
 import sys
 import os
-from database import SessionLocal, engine, get_db
+from api.database import SessionLocal, engine, get_db
 from datetime import date, datetime, timedelta, timezone
 from fastapi import FastAPI, Query, Depends, HTTPException, Request, WebSocket, WebSocketDisconnect
 from fastapi.exceptions import RequestValidationError
@@ -13,7 +13,9 @@ from sqlalchemy import cast, Float, desc, or_, select
 from sqlalchemy.orm import Session
 from typing import Dict, List, Optional
 import logging
-import models, schemas
+from api import models
+from api import schemas
+
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 models.Base.metadata.create_all(bind=engine)
